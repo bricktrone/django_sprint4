@@ -21,7 +21,7 @@ def get_comment_count(posts):
     return posts.annotate(comment_count=Count('comment'))
 
 
-def paginate_posts(posts, request, per_page=5):
+def paginate_posts(posts, request, per_page=10):
     """Function for paginator"""
     paginator = Paginator(posts, per_page)
     page_number = request.GET.get('page')
@@ -134,7 +134,7 @@ class PostsListMixin:
     """Base for posts lists"""
 
     model = Post
-    paginate_by = 8
+    paginate_by = 10
 
     def get_queryset(self):
         now = timezone.now()
